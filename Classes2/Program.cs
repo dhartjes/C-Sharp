@@ -18,6 +18,18 @@ namespace Classes2
         {
             Salary += Salary * bonusPercent;
         }
+
+        //Constructors have no return type, even void.
+        public Employee(int age, string name, double salary, DateTime startingDate, string phoneNumber)
+        {
+            Age = age;
+            Name = name;
+            Salary = salary;
+            StartingDate = startingDate;
+            PhoneNumber = phoneNumber;
+        }
+
+        public Employee() { }
     }
 
     class Program
@@ -39,6 +51,10 @@ namespace Classes2
             Console.WriteLine("{0}'s age is {1}, he started on {2}, and he makes ${3}",
                 Dhartjes.Name, Dhartjes.Age, Dhartjes.StartingDate, Dhartjes.Salary);
 
+            //Sent to the Constructor.
+            Employee Mary = new Employee(25, "Mary Jones", 60000.00, new DateTime(2010, 2, 28), "320-259-0197");
+            Console.WriteLine("{0}'s age is {1}, she started on {2}, and he makes ${3}",
+            Mary.Name, Mary.Age, Mary.StartingDate, Mary.Salary);
         }
     }
 }
