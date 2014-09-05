@@ -9,13 +9,10 @@ namespace Classes
     class Employee
     {
         private int age;
-        public int MyAge()
+        public int Age
         {
-            return age;
-        }
-        public void SetAge(int someAge)
-        {
-            age = someAge;
+            get { return age; }
+            set { age = value; }
         }
     }
 
@@ -24,9 +21,8 @@ namespace Classes
         static void Main(string[] args)
         {
             Employee Dhartjes = new Employee();
-            Dhartjes.SetAge(32);
-            int age = Dhartjes.MyAge();
-            Console.WriteLine("Dave's age is {0}", age);
+            Dhartjes.Age = 35;
+            Console.WriteLine("Dhartjes's age is {0}", Dhartjes.Age);
         }
     }
 }
