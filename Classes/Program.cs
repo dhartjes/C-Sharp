@@ -8,12 +8,24 @@ namespace Classes
 {
     class Employee
     {
-        private int age;
-        public int Age
+        public Employee(){}
+
+        public Employee(string name, int age)
         {
-            get { return age; }
-            set { age = value; }
+            // TODO: Complete member initialization
+            this.Name = name;
+            this.Age = age;
         }
+        //private int age;
+        //public int Age
+        //{
+        //    get { return age; }
+        //    set { age = value; }
+        //}
+
+        //The following is short hand for the above commented out code.
+        public int Age { get; set; }
+        public string Name { get; set; }
     }
 
     class Program
@@ -21,8 +33,14 @@ namespace Classes
         static void Main(string[] args)
         {
             Employee Dhartjes = new Employee();
-            Dhartjes.Age = 35;
-            Console.WriteLine("Dhartjes's age is {0}", Dhartjes.Age);
+            Dhartjes.Age = 32;
+            Dhartjes.Name = "Dominic";
+            Console.WriteLine("{0}'s age is {1}", Dhartjes.Name, Dhartjes.Age);
+
+            Employee Bashful = new Employee("Bethany", 35);
+            Console.WriteLine("{0}'s age is {1}", Bashful.Name, Bashful.Age);
+
+
         }
     }
 }
