@@ -10,6 +10,7 @@ namespace CSSF2Demo
     {
         static void Main(string[] args)
         {
+            //Change for GitHub
             Employee joe = new Employee("Joe Smith", "5610 Laurel Ave.", "Golden Valley", "MN", "55416");
             Console.WriteLine(joe.ToString());
             joe.Insurance = new InsuranceInfo() { PolicyName = "Life", PolicyID = "123" };
