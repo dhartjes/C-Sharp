@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Avtex.ChangeOrdersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ChangeOrder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="varchar" MaxLength="100" />
+          <Property Name="FileName" Type="varchar" MaxLength="50" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="EnterDate" Type="datetime" />
+          <Property Name="ApprovedDate" Type="datetime" />
+          <Property Name="PrimaryContact" Type="varchar" MaxLength="50" />
+          <Property Name="AvtexContact" Type="varchar" MaxLength="50" />
+          <Property Name="SW" Type="bit" />
+          <Property Name="HW" Type="bit" />
+          <Property Name="PSO" Type="bit" />
+          <Property Name="OTHER" Type="bit" />
+          <Property Name="FixedBid" Type="bit" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="150" />
+          <Property Name="Telephone" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="20" />
+          <Property Name="Zipcode" Type="varchar" MaxLength="10" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerPO" Type="varchar" MaxLength="30" />
+          <Property Name="SoftwareLevel" Type="varchar" MaxLength="20" />
+          <Property Name="PricingQuote" Type="varchar(max)" />
+          <Property Name="RequestedWork" Type="varchar(max)" />
+          <Property Name="ShippingInfo" Type="varchar(max)" />
+          <Property Name="CrmOppCreated" Type="bit" />
+        </EntityType>
+        <EntityType Name="ChangeOrderStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_ChangeOrder_ChangeOrderStatus">
+          <End Role="ChangeOrderStatus" Type="Self.ChangeOrderStatus" Multiplicity="1" />
+          <End Role="ChangeOrder" Type="Self.ChangeOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChangeOrderStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ChangeOrder">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AvtexChangeOrdersModelStoreContainer">
+          <EntitySet Name="ChangeOrder" EntityType="Self.ChangeOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChangeOrderStatus" EntityType="Self.ChangeOrderStatus" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ChangeOrder_ChangeOrderStatus" Association="Self.FK_ChangeOrder_ChangeOrderStatus">
+            <End Role="ChangeOrderStatus" EntitySet="ChangeOrderStatus" />
+            <End Role="ChangeOrder" EntitySet="ChangeOrder" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Avtex.ChangeOrdersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ChangeOrder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="EnterDate" Type="DateTime" Precision="3" />
+          <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
+          <Property Name="PrimaryContact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AvtexContact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SW" Type="Boolean" />
+          <Property Name="HW" Type="Boolean" />
+          <Property Name="PSO" Type="Boolean" />
+          <Property Name="OTHER" Type="Boolean" />
+          <Property Name="FixedBid" Type="Boolean" />
+          <Property Name="CustomerName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Zipcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerPO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="SoftwareLevel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PricingQuote" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RequestedWork" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CrmOppCreated" Type="Boolean" />
+          <NavigationProperty Name="ChangeOrderStatu" Relationship="Self.FK_ChangeOrder_ChangeOrderStatus" FromRole="ChangeOrder" ToRole="ChangeOrderStatus" />
+        </EntityType>
+        <EntityType Name="ChangeOrderStatu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ChangeOrders" Relationship="Self.FK_ChangeOrder_ChangeOrderStatus" FromRole="ChangeOrderStatus" ToRole="ChangeOrder" />
+        </EntityType>
+        <Association Name="FK_ChangeOrder_ChangeOrderStatus">
+          <End Role="ChangeOrderStatus" Type="Self.ChangeOrderStatu" Multiplicity="1" />
+          <End Role="ChangeOrder" Type="Self.ChangeOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChangeOrderStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ChangeOrder">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ChangeOrders" EntityType="Self.ChangeOrder" />
+          <EntitySet Name="ChangeOrderStatus" EntityType="Self.ChangeOrderStatu" />
+          <AssociationSet Name="FK_ChangeOrder_ChangeOrderStatus" Association="Self.FK_ChangeOrder_ChangeOrderStatus">
+            <End Role="ChangeOrderStatus" EntitySet="ChangeOrderStatus" />
+            <End Role="ChangeOrder" EntitySet="ChangeOrders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AvtexChangeOrdersModelStoreContainer" CdmEntityContainer="Entities1">
+          <EntitySetMapping Name="ChangeOrders">
+            <EntityTypeMapping TypeName="Avtex.ChangeOrdersModel.ChangeOrder">
+              <MappingFragment StoreEntitySet="ChangeOrder">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="EnterDate" ColumnName="EnterDate" />
+                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
+                <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
+                <ScalarProperty Name="AvtexContact" ColumnName="AvtexContact" />
+                <ScalarProperty Name="SW" ColumnName="SW" />
+                <ScalarProperty Name="HW" ColumnName="HW" />
+                <ScalarProperty Name="PSO" ColumnName="PSO" />
+                <ScalarProperty Name="OTHER" ColumnName="OTHER" />
+                <ScalarProperty Name="FixedBid" ColumnName="FixedBid" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CustomerPO" ColumnName="CustomerPO" />
+                <ScalarProperty Name="SoftwareLevel" ColumnName="SoftwareLevel" />
+                <ScalarProperty Name="PricingQuote" ColumnName="PricingQuote" />
+                <ScalarProperty Name="RequestedWork" ColumnName="RequestedWork" />
+                <ScalarProperty Name="ShippingInfo" ColumnName="ShippingInfo" />
+                <ScalarProperty Name="CrmOppCreated" ColumnName="CrmOppCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChangeOrderStatus">
+            <EntityTypeMapping TypeName="Avtex.ChangeOrdersModel.ChangeOrderStatu">
+              <MappingFragment StoreEntitySet="ChangeOrderStatus">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
